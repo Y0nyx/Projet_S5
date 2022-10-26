@@ -34,9 +34,29 @@ def acceleration(final_speed, acceleration):
 
 def line_follower():
     while True:
-        print(lf.read_analog())
-        print(lf.read_digital())
-        print('')
+        analog_data = lf.read_analog()
+
+        case = 0
+        for i in range(len(analog_data) - 1):
+            if analog_data[i] < analog_data[i + 1]:
+                case = i
+
+        if case == 0:
+            print("case 0")
+            fw.turn(30)
+        elif case == 1:
+            print("case 1")
+            fw.turn(5)
+        elif case == 2:
+            print("case 2")
+        elif case == 3:
+            print("case 3")
+            fw.turn(-5)
+        elif case == 4:
+            print("case 4")
+            fw.turn(-30)
+
+
         time.sleep(0.5)
 def stop():
 	bw.stop()
@@ -46,6 +66,7 @@ if __name__ == '__main__':
     try:
         # acceleration(70, 3)
         bw.speed = 10
+        bw.forward()
         line_follower()
     except KeyboardInterrupt:
         stop()
