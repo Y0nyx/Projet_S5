@@ -29,16 +29,23 @@ def acceleration(final_speed, acceleration):
     bw.forward()
     for i in range(0, final_speed):
         bw.speed = i
-        print(bw.speed)
+        print(i)
         time.sleep(needed_time/final_speed)
 
-
+def line_follower():
+    while True:
+        print(lf.read_analog())
+        print(lf.read_digital())
+        print('')
+        time.sleep(0.5)
 def stop():
 	bw.stop()
 	fw.turn_straight()
 
 if __name__ == '__main__':
     try:
-        acceleration(70, 3)
+        # acceleration(70, 3)
+        bw.speed = 10
+        line_follower()
     except KeyboardInterrupt:
         stop()
