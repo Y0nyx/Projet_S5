@@ -26,9 +26,9 @@ last_dir = 0
 
 def acceleration(final_speed, acceleration):
     needed_time = final_speed/acceleration
-    bw.forward();
+    bw.forward()
     for i in range(0, final_speed):
-        bw.speed += 1
+        bw.speed = i
         print(bw.speed)
         time.sleep(needed_time/final_speed)
 
@@ -38,4 +38,7 @@ def stop():
 	fw.turn_straight()
 
 if __name__ == '__main__':
-    acceleration(70, 3)
+    try:
+        acceleration(70, 3)
+    except KeyboardInterrupt:
+        stop()
